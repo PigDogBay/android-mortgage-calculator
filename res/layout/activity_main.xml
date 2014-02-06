@@ -72,13 +72,11 @@
 </LinearLayout>
     <com.google.ads.AdView
         android:id="@+id/adView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:layout_alignParentBottom="true"
-        ads:adSize="BANNER"
+        ads:adSize="SMART_BANNER"
         ads:adUnitId="a15069b7d48ca0a"
         ads:loadAdOnCreate="true"
-        ads:testDevices="TEST_EMULATOR, 7FDFE2A7093B4FE11D7C0794B8BDEAC2, 6E65810B3B431A1B553C14663938DA93" >
-    </com.google.ads.AdView>
+        ads:testDevices="TEST_EMULATOR, 7FDFE2A7093B4FE11D7C0794B8BDEAC2, 6E65810B3B431A1B553C14663938DA93, 87D716F858A130948AA505E5974BB51F" />
 </RelativeLayout>

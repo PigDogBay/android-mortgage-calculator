@@ -72,6 +72,9 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 			intent = new Intent(this, AboutActivity.class);
 			startActivity(intent);
 			break;
+		case (R.id.menu_share):
+			shareMortgageDetails();
+			break;
 		default:
 			return false;
 		}
@@ -134,5 +137,8 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
         }
     }
 	
+    private void shareMortgageDetails(){
+    	ActivityUtils.shareText(this, "Mortgage Details", "£500 per month", R.string.chooser_mortgage_share);
+    }
 	
 }

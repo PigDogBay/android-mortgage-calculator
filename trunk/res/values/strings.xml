@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Easy Mortgage Calculator</string>
+    <string name="app_name">Mortgage Calculator</string>
     <string name="menu_settings">Settings</string>
-    <string name="title_activity_main">Easy Mortgage</string>
+    <string name="title_activity_main">Mortgage Calculator</string>
     <string name="mortgage">Mortgage</string>
     <string name="period">Period</string>
     <string name="rate">Rate</string>

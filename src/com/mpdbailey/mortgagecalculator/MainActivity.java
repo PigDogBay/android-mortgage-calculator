@@ -7,46 +7,61 @@ import com.pigdogbay.androidutils.utils.ActivityUtils;
 import com.pigdogbay.androidutils.utils.PreferencesHelper;
 
 import android.os.Bundle;
-import android.app.Activity;
+import android.preference.PreferenceManager;
 import android.content.Intent;
-import android.view.KeyEvent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.TextView.OnEditorActionListener;
 
-public class MainActivity extends Activity implements IMortgageView,IBackgroundColorView, OnClickListener, OnEditorActionListener{
+public class MainActivity extends FragmentActivity implements OnSharedPreferenceChangeListener,IBackgroundColorView{
 
 	EditText editMortgage, editPeriod, editRate;
 	TextView textRepayment;
-	MortgagePresenter presenter;
 	BackgroundColorPresenter _BackgroundColorPresenter;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        editMortgage = (EditText)findViewById(R.id.editMortage);
-        editPeriod = (EditText)findViewById(R.id.editPeriod);
-        editRate = (EditText)findViewById(R.id.editRate);
-        textRepayment = (TextView) findViewById(R.id.textRepayment);
-        editMortgage.setOnEditorActionListener(this);
-        editPeriod.setOnEditorActionListener(this);
-        editRate.setOnEditorActionListener(this);
-        ((Button)findViewById(R.id.btnCalculate)).setOnClickListener(this);
+        
+        AppPagerAdapter adapter = new AppPagerAdapter(getSupportFragmentManager());
+        ViewPager viewPager = (ViewPager)findViewById(R.id.main_viewpager);
+        viewPager.setAdapter(adapter);
 
         PreferencesHelper ph = new PreferencesHelper(this);
 		BackgroundColorModel bcm = new BackgroundColorModel(ph);
 		_BackgroundColorPresenter = new BackgroundColorPresenter(this,bcm);
 		_BackgroundColorPresenter.updateBackground();
         
-        presenter = new MortgagePresenter(this);
-        presenter.Initialize();
     }
+    @Override
+    protected void onResume() {
+    	super.onResume();
+		PreferenceManager.getDefaultSharedPreferences(this)
+		.registerOnSharedPreferenceChangeListener(this);
+    }
+    @Override
+    protected void onPause() {
+    	super.onPause();
+		PreferenceManager.getDefaultSharedPreferences(this)
+		.unregisterOnSharedPreferenceChangeListener(this);
+    }
+    @Override
+    protected void onDestroy() {
+    	// TODO Auto-generated method stub
+    	super.onDestroy();
+		PreferenceManager.getDefaultSharedPreferences(this)
+		.unregisterOnSharedPreferenceChangeListener(this);
+    }
+    
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
@@ -69,55 +84,55 @@ public class MainActivity extends Activity implements IMortgageView,IBackgroundC
         getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
     }
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
+			String key) {
+		if (key.equals(getString(R.string.code_pref_background_colour))){
+			_BackgroundColorPresenter.updateBackground();
+		}
+	}	
 
-	public String getMortgage()
-	{
-		return this.editMortgage.getText().toString();
-	}
-
-	public void setMortgage(String mortgage)
-	{
-		this.editMortgage.setText(mortgage);	
-	}
-
-	public String getPeriod()
-	{
-		return this.editPeriod.getText().toString();
-	}
-
-	public void setPeriod(String period)
-	{
-		this.editPeriod.setText(period);	
-	}
-
-	public String getRate()
-	{
-		return this.editRate.getText().toString();
-	}
-
-	public void setRate(String rate)
-	{
-		this.editRate.setText(rate);	
-	}
-
-	public void setRepayment(String repayment)
-	{
-		this.textRepayment.setText(repayment);	
-	}
-
-	public boolean onEditorAction(TextView v, int actionId, KeyEvent event)
-	{
-		presenter.Calculate();
-		return false;
-	}
-
-	public void onClick(View v)
-	{
-		presenter.Calculate();
-	}
 	@Override
 	public void setBackgroundColor(int id) {
 		ActivityUtils.setBackground(this, R.id.rootLayout, id);
 	}
+    public class AppPagerAdapter extends FragmentPagerAdapter {
+
+        public AppPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case 0:
+                	return new CalculatorFragment();
+                case 1:
+                    return new SettingsFragment();
+                case 2:
+                    return new HelpFragment();
+            }
+            return null;
+        }
+
+        @Override
+        public int getCount() {
+            return 3;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case 0:
+                    return "CALCULATOR";
+                case 1:
+                    return "SETTINGS";
+                case 2:
+                    return "HELP";
+            }
+            return null;
+        }
+    }
+	
 	
 }

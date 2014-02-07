@@ -1,5 +1,11 @@
 package com.mpdbailey.mortgagecalculator;
 
+import com.pigdogbay.androidutils.mvp.BackgroundColorModel;
+import com.pigdogbay.androidutils.mvp.BackgroundColorPresenter;
+import com.pigdogbay.androidutils.mvp.IBackgroundColorView;
+import com.pigdogbay.androidutils.utils.ActivityUtils;
+import com.pigdogbay.androidutils.utils.PreferencesHelper;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -13,11 +19,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
-public class MainActivity extends Activity implements IMortgageView, OnClickListener, OnEditorActionListener{
+public class MainActivity extends Activity implements IMortgageView,IBackgroundColorView, OnClickListener, OnEditorActionListener{
 
 	EditText editMortgage, editPeriod, editRate;
 	TextView textRepayment;
 	MortgagePresenter presenter;
+	BackgroundColorPresenter _BackgroundColorPresenter;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,6 +38,11 @@ public class MainActivity extends Activity implements IMortgageView, OnClickList
         editPeriod.setOnEditorActionListener(this);
         editRate.setOnEditorActionListener(this);
         ((Button)findViewById(R.id.btnCalculate)).setOnClickListener(this);
+
+        PreferencesHelper ph = new PreferencesHelper(this);
+		BackgroundColorModel bcm = new BackgroundColorModel(ph);
+		_BackgroundColorPresenter = new BackgroundColorPresenter(this,bcm);
+		_BackgroundColorPresenter.updateBackground();
         
         presenter = new MortgagePresenter(this);
         presenter.Initialize();
@@ -103,4 +115,9 @@ public class MainActivity extends Activity implements IMortgageView, OnClickList
 	{
 		presenter.Calculate();
 	}
+	@Override
+	public void setBackgroundColor(int id) {
+		ActivityUtils.setBackground(this, R.id.rootLayout, id);
+	}
+	
 }

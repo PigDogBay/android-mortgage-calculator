@@ -14,9 +14,6 @@ public class CalculatorFragment extends Fragment{
 	MortgageModel _MortgageModel;
 	NumberPicker _MortgageNumberPicker; 
 	
-	public void setMortgageModel(MortgageModel model){
-		_MortgageModel = model;
-	}
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_calculator, container, false);
@@ -26,6 +23,7 @@ public class CalculatorFragment extends Fragment{
     public void onActivityCreated(Bundle savedInstanceState) {
     	// TODO Auto-generated method stub
     	super.onActivityCreated(savedInstanceState);
+    	_MortgageModel = MainActivity.getMortgageModel(this.getActivity());
     	_MortgageNumberPicker = (NumberPicker)getActivity().findViewById(R.id.CalculatorMortgagePicker);
     	NumberPickerValue npv = new NumberPickerValue();
     	npv.setValue(_MortgageModel.Mortgage);

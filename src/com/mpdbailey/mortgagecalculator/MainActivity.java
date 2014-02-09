@@ -40,7 +40,8 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 		BackgroundColorModel bcm = new BackgroundColorModel(ph);
 		_BackgroundColorPresenter = new BackgroundColorPresenter(this,bcm);
 		_BackgroundColorPresenter.updateBackground();
-        
+		
+		checkAppRate();
     }
     @Override
     protected void onResume() {
@@ -99,6 +100,13 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 	public void setBackgroundColor(int id) {
 		ActivityUtils.setBackground(this, R.id.rootLayout, id);
 	}
+	
+	private void checkAppRate() {
+		new com.pigdogbay.androidutils.apprate.AppRate(this)
+				.setMinDaysUntilPrompt(7).setMinLaunchesUntilPrompt(5)
+				.init();
+	}
+	
     public class AppPagerAdapter extends FragmentPagerAdapter {
 
         public AppPagerAdapter(FragmentManager fm) {
@@ -138,7 +146,7 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
     }
 	
     private void shareMortgageDetails(){
-    	ActivityUtils.shareText(this, "Mortgage Details", "£500 per month", R.string.chooser_mortgage_share);
+    	ActivityUtils.shareText(this, "Mortgage Details", "ï¿½500 per month", R.string.chooser_mortgage_share);
     }
 	
 }

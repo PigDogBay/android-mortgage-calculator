@@ -6,10 +6,10 @@ import com.pigdogbay.androidutils.mvp.IBackgroundColorView;
 import com.pigdogbay.androidutils.usercontrols.NumberPicker;
 import com.pigdogbay.androidutils.utils.ActivityUtils;
 import com.pigdogbay.androidutils.utils.PreferencesHelper;
-import com.pigdogbay.weightrecorder.R;
 
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
@@ -28,9 +28,18 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 	EditText editMortgage, editPeriod, editRate;
 	TextView textRepayment;
 	BackgroundColorPresenter _BackgroundColorPresenter;
-	private MortgageModel _MortgageModel;
-	NumberPicker _MortgageNumberPicker; 
-
+	private static MortgageModel _MortgageModel;
+    public static MortgageModel getMortgageModel(Context context){
+    	if (_MortgageModel==null)
+    	{
+	    	PreferencesHelper ph = new PreferencesHelper(context);
+	    	_MortgageModel = new MortgageModel();
+			_MortgageModel.Mortgage = ph.getDouble(R.string.code_pref_mortgage_amount_key, 100000D);
+			_MortgageModel.Period = ph.getDouble(R.string.code_pref_mortgage_period_key, 25D);
+			_MortgageModel.Rate = ph.getDouble(R.string.code_pref_mortgage_rate_key, 0.05D);
+    	}
+    	return _MortgageModel;
+    }
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,16 +55,7 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 		_BackgroundColorPresenter = new BackgroundColorPresenter(this,bcm);
 		_BackgroundColorPresenter.updateBackground();
 		
-		_MortgageModel = createMortgageModel();
 		checkAppRate();
-    }
-    private MortgageModel createMortgageModel(){
-    	PreferencesHelper ph = new PreferencesHelper(this);
-		MortgageModel mortgageModel = new MortgageModel();
-		mortgageModel.Mortgage = ph.getDouble(R.string.code_pref_mortgage_amount_key, 100000D);
-		mortgageModel.Period = ph.getDouble(R.string.code_pref_mortgage_period_key, 25D);
-		mortgageModel.Rate = ph.getDouble(R.string.code_pref_mortgage_rate_key, 0.05D);
-    	return mortgageModel;
     }
     private void saveData(MortgageModel mm){
     	PreferencesHelper ph = new PreferencesHelper(this);
@@ -75,7 +75,7 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
     	super.onPause();
 		PreferenceManager.getDefaultSharedPreferences(this)
 		.unregisterOnSharedPreferenceChangeListener(this);
-		saveData(_MortgageModel);
+		saveData(getMortgageModel(this));
     }
     @Override
     protected void onDestroy() {

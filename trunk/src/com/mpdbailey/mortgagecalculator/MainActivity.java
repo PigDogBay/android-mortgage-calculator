@@ -3,8 +3,10 @@ package com.mpdbailey.mortgagecalculator;
 import com.pigdogbay.androidutils.mvp.BackgroundColorModel;
 import com.pigdogbay.androidutils.mvp.BackgroundColorPresenter;
 import com.pigdogbay.androidutils.mvp.IBackgroundColorView;
+import com.pigdogbay.androidutils.usercontrols.NumberPicker;
 import com.pigdogbay.androidutils.utils.ActivityUtils;
 import com.pigdogbay.androidutils.utils.PreferencesHelper;
+import com.pigdogbay.weightrecorder.R;
 
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -26,6 +28,9 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 	EditText editMortgage, editPeriod, editRate;
 	TextView textRepayment;
 	BackgroundColorPresenter _BackgroundColorPresenter;
+	private MortgageModel _MortgageModel;
+	NumberPicker _MortgageNumberPicker; 
+
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,7 +46,23 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 		_BackgroundColorPresenter = new BackgroundColorPresenter(this,bcm);
 		_BackgroundColorPresenter.updateBackground();
 		
+		_MortgageModel = createMortgageModel();
 		checkAppRate();
+    }
+    private MortgageModel createMortgageModel(){
+    	PreferencesHelper ph = new PreferencesHelper(this);
+		MortgageModel mortgageModel = new MortgageModel();
+		mortgageModel.Mortgage = ph.getDouble(R.string.code_pref_mortgage_amount_key, 100000D);
+		mortgageModel.Period = ph.getDouble(R.string.code_pref_mortgage_period_key, 25D);
+		mortgageModel.Rate = ph.getDouble(R.string.code_pref_mortgage_rate_key, 0.05D);
+    	return mortgageModel;
+    }
+    private void saveData(MortgageModel mm){
+    	PreferencesHelper ph = new PreferencesHelper(this);
+    	ph.setDouble(R.string.code_pref_mortgage_amount_key, mm.Mortgage);
+    	ph.setDouble(R.string.code_pref_mortgage_period_key, mm.Period);
+    	ph.setDouble(R.string.code_pref_mortgage_rate_key, mm.Rate);
+    	
     }
     @Override
     protected void onResume() {
@@ -54,6 +75,7 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
     	super.onPause();
 		PreferenceManager.getDefaultSharedPreferences(this)
 		.unregisterOnSharedPreferenceChangeListener(this);
+		saveData(_MortgageModel);
     }
     @Override
     protected void onDestroy() {

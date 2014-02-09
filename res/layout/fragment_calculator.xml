@@ -1,8 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true" >
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical" >
-    
+        <TextView
+            style="@style/SettingTitle"
+            android:text="Mortgage" />
+
+        <TextView
+            style="@style/SettingDescription"
+            android:text="Enter the amount of money you would like to borrow. Use the +/- buttons to adjust or press the center button to edit." />
+
+        <com.pigdogbay.androidutils.usercontrols.NumberPicker
+            android:id="@+id/CalculatorMortgagePicker"
+            style="@style/SettingNumberPicker" />
+
+        <TextView
+            style="@style/SettingTitle"
+            android:text="Period" />
+
+        <TextView
+            style="@style/SettingDescription"
+            android:text="Enter the number of years that the mortgage will last" />
+
+        <com.pigdogbay.androidutils.usercontrols.NumberPicker
+            android:id="@+id/CalculatorPeriodPicker"
+            style="@style/SettingNumberPicker" />
+
+        <TextView
+            style="@style/SettingTitle"
+            android:text="Rate" />
+
+        <TextView
+            style="@style/SettingDescription"
+            android:text="Enter the interest rate of the mortgage" />
+
+        <com.pigdogbay.androidutils.usercontrols.NumberPicker
+            android:id="@+id/CalculatorRatePicker"
+            style="@style/SettingNumberPicker" />
+        
+        <TextView
+            style="@style/SettingTitle"
+            android:text="Monthly Repayment" />
+
+        <TextView
+            style="@style/SettingDescription"
+            android:text="This is how much the mortgage will cost you every month, includes interest and repayment." />
+
+        <TextView
+            android:id="@+id/CalculatorRepaymentTextView"
+            style="@style/MortgageResult" 
+            android:text="£540.50"
+            />
+        
 
 </LinearLayout>
+</ScrollView>

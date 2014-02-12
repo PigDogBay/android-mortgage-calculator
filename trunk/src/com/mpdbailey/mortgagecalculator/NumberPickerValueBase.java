@@ -7,7 +7,7 @@ public abstract class NumberPickerValueBase implements INumberPickerValue{
 
 	protected double _Step = 1;
 	protected double _Value=0;
-	public IValueChangedCallback _Callback;
+	public IValueChangedCallback Callback;
 
 	@Override
 	public void increase() {
@@ -44,8 +44,8 @@ public abstract class NumberPickerValueBase implements INumberPickerValue{
 		}
 	}
 	protected void onValueChanged(){
-		if (_Callback!=null){
-			_Callback.ValueChanged(this);
+		if (Callback!=null){
+			Callback.ValueChanged(this);
 		}
 	}
 

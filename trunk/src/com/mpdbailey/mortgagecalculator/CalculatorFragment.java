@@ -42,6 +42,7 @@ public class CalculatorFragment extends Fragment implements IValueChangedCallbac
     	numPicker.setNumberEditorDialog(new PercentDialogue(getActivity(),"Percentage", "Enter Rate"));
     	numPicker = (NumberPicker)getActivity().findViewById(R.id.CalculatorPeriodPicker);
     	numPicker.setNumberPickerValue(_PeriodValue);
+    	numPicker.setNumberEditorDialog(new PeriodDialog(getActivity(),"Years", "Enter Period In Years"));
     }
     @Override
     public void onResume() {

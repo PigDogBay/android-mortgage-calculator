@@ -37,9 +37,12 @@ public class CalculatorFragment extends Fragment implements IValueChangedCallbac
     	modelToView();
     	NumberPicker numPicker = (NumberPicker)getActivity().findViewById(R.id.CalculatorMortgagePicker);
     	numPicker.setNumberPickerValue(_MortgageValue);
+    	numPicker.setNumberEditorDialog(new MortgageDialog(getActivity(),"Money", "Enter Mortgage Amount"));
+
     	numPicker = (NumberPicker)getActivity().findViewById(R.id.CalculatorRatePicker);
     	numPicker.setNumberPickerValue(_RateValue);
     	numPicker.setNumberEditorDialog(new PercentDialogue(getActivity(),"Percentage", "Enter Rate"));
+    	
     	numPicker = (NumberPicker)getActivity().findViewById(R.id.CalculatorPeriodPicker);
     	numPicker.setNumberPickerValue(_PeriodValue);
     	numPicker.setNumberEditorDialog(new PeriodDialog(getActivity(),"Years", "Enter Period In Years"));

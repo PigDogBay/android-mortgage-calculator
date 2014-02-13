@@ -38,7 +38,7 @@
 
         <TextView
             style="@style/SettingDescription"
-            android:text="Enter the interest rate of the mortgage" />
+            android:text="Enter the annual interest rate of the mortgage" />
 
         <com.pigdogbay.androidutils.usercontrols.NumberPicker
             android:id="@+id/CalculatorRatePicker"

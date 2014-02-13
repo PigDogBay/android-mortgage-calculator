@@ -79,7 +79,6 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
     }
     @Override
     protected void onDestroy() {
-    	// TODO Auto-generated method stub
     	super.onDestroy();
 		PreferenceManager.getDefaultSharedPreferences(this)
 		.unregisterOnSharedPreferenceChangeListener(this);
@@ -141,9 +140,9 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
                 case 0:
                 	return new CalculatorFragment();
                 case 1:
-                    return new SettingsFragment();
-                case 2:
                     return new HelpFragment();
+                case 2:
+                    return new SettingsFragment();
             }
             return null;
         }
@@ -159,9 +158,9 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
                 case 0:
                     return "CALCULATOR";
                 case 1:
-                    return "SETTINGS";
-                case 2:
                     return "HELP";
+                case 2:
+                    return "SETTINGS";
             }
             return null;
         }

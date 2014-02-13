@@ -58,5 +58,19 @@
         On the menu press the share icon or option.
         
 ]]>
-    </string>    
+    </string>
+     <string name="share_template">
+        <![CDATA[
+Mortgage Calculator
+<br/>http://www.pigdogbay.com
+<br/>
+<br/>
+<br/>Mortgage $mortgage
+<br/>Period   $period
+<br/>Rate     $rate
+<br/>Monthly Repayment $monthlyrepayment
+<br/>
+		]]>
+         
+    </string>
 </resources>

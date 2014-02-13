@@ -1,9 +1,10 @@
 package com.mpdbailey.mortgagecalculator;
 
+import java.text.NumberFormat;
+
 import com.pigdogbay.androidutils.mvp.BackgroundColorModel;
 import com.pigdogbay.androidutils.mvp.BackgroundColorPresenter;
 import com.pigdogbay.androidutils.mvp.IBackgroundColorView;
-import com.pigdogbay.androidutils.usercontrols.NumberPicker;
 import com.pigdogbay.androidutils.utils.ActivityUtils;
 import com.pigdogbay.androidutils.utils.PreferencesHelper;
 
@@ -18,6 +19,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -167,7 +169,12 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
     }
 	
     private void shareMortgageDetails(){
-    	ActivityUtils.shareText(this, "Mortgage Details", "�500 per month", R.string.chooser_mortgage_share);
+		String template = Html.fromHtml(this.getString(R.string.share_template)).toString();
+    	template = template.replace("$mortgage", NumberFormat.getCurrencyInstance().format(_MortgageModel.Mortgage));
+    	template = template.replace("$period", NumberFormat.getIntegerInstance().format(_MortgageModel.Period)+" years");
+    	template = template.replace("$rate", String.format("%.2f%%", _MortgageModel.Rate*100D));
+    	template = template.replace("$monthlyrepayment", NumberFormat.getCurrencyInstance().format(_MortgageModel.getRepayment()));
+    	ActivityUtils.shareText(this, "Mortgage Details", template, R.string.chooser_mortgage_share);
     }
 	
 }

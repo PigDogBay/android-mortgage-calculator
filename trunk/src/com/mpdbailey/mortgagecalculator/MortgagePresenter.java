@@ -6,6 +6,9 @@ import java.text.ParseException;
 public class MortgagePresenter
 {
 	private IMortgageView _View;
+	private MortgageModel _MortgageModel;
+	
+	public void setMortgageModel(MortgageModel model){_MortgageModel=model;}
 	
 	public MortgagePresenter(IMortgageView view)
 	{

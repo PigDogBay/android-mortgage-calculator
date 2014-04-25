@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mpdbailey.mortgagecalculator"
-    android:versionCode="104"
-    android:versionName="1.04.01" 
+    android:versionCode="10501"
+    android:versionName="1.05.01" 
     android:installLocation="auto">
 
 	<uses-permission android:name="android.permission.INTERNET"/>
@@ -16,6 +16,9 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+		<meta-data android:name="com.google.android.gms.version"
+               android:value="@integer/google_play_services_version"/>        
+        
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main" >
@@ -27,8 +30,9 @@
         <activity 
             android:name=".AboutActivity"
             android:label="@string/title_activity_about"/>     
-		<activity android:name="com.google.ads.AdActivity"
-                  android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>   
+		<activity android:name="com.google.android.gms.ads.AdActivity"
+		    	  android:windowSoftInputMode="stateAlwaysHidden|adjustResize|adjustPan"
+		          android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>        
         
         
     </application>

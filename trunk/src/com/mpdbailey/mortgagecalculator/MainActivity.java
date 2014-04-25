@@ -66,6 +66,9 @@ public class MainActivity extends FragmentActivity implements
 		_BackgroundColorPresenter.updateBackground();
 		setupAds();
 
+		//Get tracker - hopefully will auto track the activities
+		((MortgageApplication) getApplication()).getTracker();
+
 		checkAppRate();
 	}
 

@@ -1,6 +1,8 @@
 package com.mpdbailey.mortgagecalculator;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.pigdogbay.androidutils.mvp.BackgroundColorModel;
 import com.pigdogbay.androidutils.mvp.BackgroundColorPresenter;
 import com.pigdogbay.androidutils.mvp.IBackgroundColorView;
@@ -38,6 +40,7 @@ public class AboutActivity extends Activity implements IBackgroundColorView
 			public void onClick(View v)
 			{
 				showWebPage(R.string.market_url);
+				trackPress("rate_btn");
 			}
 		});
         btn = (Button) findViewById(R.id.aboutBtnFacebook);
@@ -46,6 +49,7 @@ public class AboutActivity extends Activity implements IBackgroundColorView
 			@Override
 			public void onClick(View v) {
 				showWebPage(R.string.market_pigdogbay_apps);
+				trackPress("more_apps_btn");
 			}
 		});
 		((Button) findViewById(R.id.aboutBtnLegal)).setOnClickListener(new OnClickListener()
@@ -53,6 +57,7 @@ public class AboutActivity extends Activity implements IBackgroundColorView
 			public void onClick(View v)
 			{
 				showLegal();
+				trackPress("legal_btn");
 			}
 		});
 		PreferencesHelper ph = new PreferencesHelper(this);
@@ -112,4 +117,14 @@ public class AboutActivity extends Activity implements IBackgroundColorView
 	public void setBackgroundColor(int id) {
 		ActivityUtils.setBackground(this, R.id.rootLayout, id);
 	}
+    private void trackPress(String name)
+    {
+    	Tracker t = ((MortgageApplication)getApplication()).getTracker();
+    	t.send(new HitBuilders.EventBuilder()
+    		.setCategory("about_ui_action")
+    		.setAction("button_press")
+    		.setLabel(name)
+    		.build());
+    }
+	
 }

@@ -24,7 +24,7 @@
     <string name="twitter">http://www.twitter.com/pigdogbay</string>
     <string name="blogger">http://pigdogbay.blogspot.co.uk</string>
     <string translatable="false" name="market_url">market://details?id=com.mpdbailey.mortgagecalculator</string>
-    <string name="about_version">Version 1.05.02</string>
+    <string name="about_version">Version 1.05.03</string>
     <string name="about_copyright">\u00A92014 Pig Dog Bay</string>
     <string name="about_web">www.pigdogbay.com</string>
     <string name="about_header_info">INFO</string>

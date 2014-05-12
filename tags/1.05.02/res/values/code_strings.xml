@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources >
+    <string translatable="false" name="code_pref_mortgage_amount_key">mortgage_amount_key</string>
+    <string translatable="false" name="code_pref_mortgage_period_key">mortgage_period_key</string>
+    <string translatable="false" name="code_pref_mortgage_rate_key">mortgage_rate_key</string>
+</resources>

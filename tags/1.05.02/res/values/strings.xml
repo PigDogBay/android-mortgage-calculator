@@ -1,0 +1,76 @@
+<resources>
+    <string name="market_pigdogbay_apps">market://search?q=pub:Pig%20Dog%20Bay</string>
+    <string name="app_name">Mortgage Calculator</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_share">Share</string>
+    <string name="title_activity_main">Mortgage Calculator</string>
+    <string name="chooser_mortgage_share">Share Details</string>
+    <string name="mortgage">Mortgage</string>
+    <string name="period">Period</string>
+    <string name="rate">Rate</string>
+    <string name="calculate">Get Monthly Repayment</string>
+    <string name="mortgage_amount_">Mortgage amount:</string>
+    <string name="period_in_years_">Period in years:</string>
+    <string name="annual_interest_rate_">Annual interest rate:</string>
+    <string name="results">Results</string>
+    <string name="title_activity_about">About</string>
+    <string name="title_activity_help">Help</string>
+    <string name="menu_about">About</string>
+    <string name="menu_help">Help</string>
+    <string name="email">pigdogbay@yahoo.co.uk</string>
+    <string name="website">http://www.pigdogbay.com</string>
+    <string name="facebookPage">http://www.facebook.com/pigdogbay</string>
+    <string name="twitter">http://www.twitter.com/pigdogbay</string>
+    <string name="blogger">http://pigdogbay.blogspot.co.uk</string>
+    <string translatable="false" name="market_url">market://details?id=com.mpdbailey.mortgagecalculator</string>
+    <string name="about_version">Version 1.05.02</string>
+    <string name="about_copyright">\u00A92014 Pig Dog Bay</string>
+    <string name="about_web">www.pigdogbay.com</string>
+    <string name="about_header_info">INFO</string>
+    <string name="about_header_feedback">FEEDBACK</string>
+    <string name="about_body_feedback">Keep updates coming by rating the app, your feedback is most welcome. Try out my other Apps on Google Play.</string>
+    <string name="about_button_rate">RATE THIS APP</string>
+    <string name="about_button_facebook">GET MORE APPS</string>
+    <string name="about_button_legal">Legal Notices</string>
+    <string name="about_no_market_app">Unable to find market app</string>
+    <string name="background_settings_title">Background Color</string>
+    <string name="background_settings_description">Select the background color to use.</string>
+    <string name="help_html">
+        <![CDATA[
+        <b>Welcome</b><br/><br/>
+        Mortgage Calculator is a handy app to help you shop around for your home loan or mortgage. The app has been designed to allow fast data entry and 
+        show you your monthly mortgage repayment promptly.
+		<br/><br/><b>Mortgage</b><br/><br/>
+        Enter the amount of money you wish to borrow. Press the button showing the amount, a box will appear that allows you to enter your value. 
+        Alternatively you can press the +/- buttons to adjust.  
+        <br/><br/><b>Period</b><br/><br/>
+        The period is the number of years you wish to borrow over.
+        <br/><br/><b>Rate</b><br/><br/>
+        The rate is the annual (yearly) interest rate that your mortgage provider will charge you, the rate is shown as a percentage.
+        <br/><br/><b>Monthly Repayment</b><br/><br/>
+        The monthly repayment is the amount you have to pay back each month. This figure includes both the interest and mortgage loan repayment and
+        is calculated immediately for your convenience.
+        <br/><br/><b>Settings</b><br/><br/>
+        Slide the screen to the settings tab, here you can choose one of the many exciting background colors.
+        <br/><br/><b>Share</b><br/><br/>
+        You can share your mortgage details with other apps such as e-Mail or text messages apps if available. 
+        On the menu press the share icon or option.
+        
+]]>
+    </string>
+     <string name="share_template">
+        <![CDATA[
+Mortgage Calculator
+<br/>http://www.pigdogbay.com
+<br/>
+<br/>
+<br/>Mortgage $mortgage
+<br/>Period   $period
+<br/>Rate     $rate
+<br/>Monthly Repayment $monthlyrepayment
+<br/>
+		]]>
+         
+    </string>
+</resources>

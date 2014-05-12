@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mpdbailey.mortgagecalculator"
-    android:versionCode="10502"
-    android:versionName="1.05.02" 
+    android:versionCode="10503"
+    android:versionName="1.05.03" 
     android:installLocation="auto">
 
 	<uses-permission android:name="android.permission.INTERNET"/>

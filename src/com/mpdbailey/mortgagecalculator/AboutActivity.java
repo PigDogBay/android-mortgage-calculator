@@ -60,6 +60,8 @@ public class AboutActivity extends Activity implements IBackgroundColorView
 				trackPress("legal_btn");
 			}
 		});
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		
 		PreferencesHelper ph = new PreferencesHelper(this);
 		BackgroundColorModel bcm = new BackgroundColorModel(ph);
 		_BackgroundColorPresenter = new BackgroundColorPresenter(this,bcm);
@@ -79,17 +81,11 @@ public class AboutActivity extends Activity implements IBackgroundColorView
 	}
 	
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
-	{
-		getMenuInflater().inflate(R.menu.menu_about, menu);
-		return true;
-	}
-	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
 		switch (item.getItemId())
 		{
-		case (R.id.menu_about_home):
+		case android.R.id.home:
 			finish();
 			break;
 		}

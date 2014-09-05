@@ -1,0 +1,15 @@
+Release notes for the Android Mortgage Calculator App
+
+= Introduction =
+
+IDE: Eclipse 4.4
+
+Google Play: http://play.google.com/store/apps/details?id=com.mpdbailey.mortgagecalculator
+
+
+= Details =
+== Release 1.06.01 ==
+5th Sept 2014 *Alpha*
+
+_Changes_
+  * Min API level is now 16

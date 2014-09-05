@@ -1,28 +1,26 @@
 package com.mpdbailey.mortgagecalculator;
 
-import com.google.android.gms.analytics.GoogleAnalytics;
-import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
-import com.pigdogbay.androidutils.mvp.BackgroundColorModel;
-import com.pigdogbay.androidutils.mvp.BackgroundColorPresenter;
-import com.pigdogbay.androidutils.mvp.IBackgroundColorView;
-import com.pigdogbay.androidutils.utils.ActivityUtils;
-import com.pigdogbay.androidutils.utils.PreferencesHelper;
-
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.pigdogbay.androidutils.mvp.BackgroundColorModel;
+import com.pigdogbay.androidutils.mvp.BackgroundColorPresenter;
+import com.pigdogbay.androidutils.mvp.IBackgroundColorView;
+import com.pigdogbay.androidutils.utils.ActivityUtils;
+import com.pigdogbay.androidutils.utils.PreferencesHelper;
+
 
 public class AboutActivity extends Activity implements IBackgroundColorView
 {
+	private static final String EVENT_LABEL = "about";
 	BackgroundColorPresenter _BackgroundColorPresenter;
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -40,7 +38,7 @@ public class AboutActivity extends Activity implements IBackgroundColorView
 			public void onClick(View v)
 			{
 				showWebPage(R.string.market_url);
-				trackPress("rate_btn");
+				MortgageApplication.trackEvent(AboutActivity.this, EVENT_LABEL, "rate");
 			}
 		});
         btn = (Button) findViewById(R.id.aboutBtnFacebook);
@@ -49,7 +47,7 @@ public class AboutActivity extends Activity implements IBackgroundColorView
 			@Override
 			public void onClick(View v) {
 				showWebPage(R.string.market_pigdogbay_apps);
-				trackPress("more_apps_btn");
+				MortgageApplication.trackEvent(AboutActivity.this, EVENT_LABEL, "get_more_apps");
 			}
 		});
 		((Button) findViewById(R.id.aboutBtnLegal)).setOnClickListener(new OnClickListener()
@@ -57,9 +55,31 @@ public class AboutActivity extends Activity implements IBackgroundColorView
 			public void onClick(View v)
 			{
 				showLegal();
-				trackPress("legal_btn");
+				MortgageApplication.trackEvent(AboutActivity.this, EVENT_LABEL, "legal");
 			}
 		});
+        findViewById(R.id.aboutFacebookLink).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				showWebPage(R.string.facebookPage);
+		    	MortgageApplication.trackEvent(AboutActivity.this, EVENT_LABEL, "facebook");
+			}
+		});
+        findViewById(R.id.aboutTwitterLink).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				showWebPage(R.string.twitter);
+		    	MortgageApplication.trackEvent(AboutActivity.this, EVENT_LABEL, "twitter");
+			}
+		});
+        findViewById(R.id.aboutWebsiteLink).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				showWebPage(R.string.website);
+		    	MortgageApplication.trackEvent(AboutActivity.this, EVENT_LABEL, "website");
+			}
+		});
+		
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		PreferencesHelper ph = new PreferencesHelper(this);
@@ -113,14 +133,4 @@ public class AboutActivity extends Activity implements IBackgroundColorView
 	public void setBackgroundColor(int id) {
 		ActivityUtils.setBackground(this, R.id.rootLayout, id);
 	}
-    private void trackPress(String name)
-    {
-    	Tracker t = ((MortgageApplication)getApplication()).getTracker();
-    	t.send(new HitBuilders.EventBuilder()
-    		.setCategory("about_ui_action")
-    		.setAction("button_press")
-    		.setLabel(name)
-    		.build());
-    }
-	
 }

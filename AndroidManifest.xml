@@ -1,14 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mpdbailey.mortgagecalculator"
-    android:versionCode="10503"
-    android:versionName="1.05.03" 
+    android:versionCode="10601"
+    android:versionName="1.06.01" 
     android:installLocation="auto">
 
 	<uses-permission android:name="android.permission.INTERNET"/>
   	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     
     <uses-sdk
-        android:minSdkVersion="9"
+        android:minSdkVersion="16"
         android:targetSdkVersion="19" />
 
     <application

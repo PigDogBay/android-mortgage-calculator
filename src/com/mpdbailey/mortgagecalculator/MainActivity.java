@@ -37,6 +37,9 @@ public class MainActivity extends FragmentActivity implements
 	private static MortgageModel _MortgageModel;
 	private AdView _AdView;
 
+	private static final String MAIN_MENU_CATEGORY = "Main Menu";
+	
+
 	public static MortgageModel getMortgageModel(Context context) {
 		if (_MortgageModel == null) {
 			PreferencesHelper ph = new PreferencesHelper(context);
@@ -139,6 +142,7 @@ public class MainActivity extends FragmentActivity implements
 			break;
 		case (R.id.menu_share):
 			shareMortgageDetails();
+			MortgageApplication.trackEvent(this, MAIN_MENU_CATEGORY, "share");
 			break;
 		default:
 			return false;

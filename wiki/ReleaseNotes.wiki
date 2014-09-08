@@ -8,6 +8,15 @@ Google Play: http://play.google.com/store/apps/details?id=com.mpdbailey.mortgage
 
 
 = Details =
+
+== Release 1.05.04 ==
+th Sept 2014 *Alpha*
+
+_Changes_
+  * Added landscape view for calculator fragment
+  * Replaced home menu option with the Android Home button
+
+
 == Release 1.05.03 ==
 5th Sept 2014 *Alpha*
 

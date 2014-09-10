@@ -5,8 +5,11 @@ import java.text.NumberFormat;
 import com.pigdogbay.androidutils.usercontrols.INumberPickerValue;
 import com.pigdogbay.androidutils.usercontrols.IValueChangedCallback;
 import com.pigdogbay.androidutils.usercontrols.NumberPicker;
+
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,8 +24,14 @@ public class CalculatorFragment extends Fragment implements IValueChangedCallbac
 	
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_calculator, container, false);
-        return rootView;
+    	int orientation = getResources().getConfiguration().orientation;
+    	int size = getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
+    	if (Configuration.ORIENTATION_LANDSCAPE==orientation && (size==Configuration.SCREENLAYOUT_SIZE_SMALL ||size==Configuration.SCREENLAYOUT_SIZE_NORMAL ))
+    	{
+            return inflater.inflate(R.layout.fragment_calculator_compact, container, false);
+    		
+    	}
+        return inflater.inflate(R.layout.fragment_calculator, container, false);
     }
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {

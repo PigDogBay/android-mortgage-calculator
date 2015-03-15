@@ -1,0 +1,54 @@
+Release notes for the Android Mortgage Calculator App
+
+# Introduction #
+
+IDE: Eclipse 4.4
+
+Google Play: http://play.google.com/store/apps/details?id=com.mpdbailey.mortgagecalculator
+
+
+# Details #
+## Release 1.06.01 ##
+
+_Changes_
+
+## Release 1.05.04 ##
+12th Sept 2014 **Production**<br />
+10th Sept 2014 **Alpha**
+
+_Changes_
+  * Added compact landscape view for calculator fragment
+
+
+## Release 1.05.03 ##
+5th Sept 2014 **Alpha**
+
+_Changes_
+  * Min API level is now 16
+  * Replaced home menu option with the Android Home button
+
+
+## Release 1.05.02 ##
+12th May 2014 **Alpha**
+
+_Changes_
+  * Added analytics global config xml
+  * Added analytics meta data tag for the global config
+  * Added start/stop methods in all activities for analytics
+  * Changed about facebook button to show my apps
+  * Added tracking for about button presses
+
+
+## Release 1.05.01 ##
+25th Apr 2014
+
+_Changes_
+  * Migrated AdMob to google play services
+
+
+## Release 1.04.01 ##
+14th Feb 2014 **Production**
+
+  * New User Interface - faster - easier data entry
+  * Monthly payment displayed immediately
+  * New Share feature - send your mortgage details via E-Mail or txt msg
